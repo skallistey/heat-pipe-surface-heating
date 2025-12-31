@@ -1,0 +1,13 @@
+{
+  "name": "heat-pipe-surface-heating",
+  "version": "1.0.0",
+  "title": "Surface Heat Pipe Heating",
+  "author": "skallistey",
+  "factorio_version": "2.0",
+  "description": "Adds 10 tiers of surface heat pipes with increasing heating radius, designed for cold planets and Space Age gameplay.",
+  "dependencies": [
+  "base >= 2.0",
+  "space-age",
+  "? quality"
+  ]
+}

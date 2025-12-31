@@ -1,0 +1,15 @@
+-- prototypes/item-basic.lua
+-- Шаблон для Item трубы нагрева поверхности
+
+data:extend({
+    {
+        type = "item",
+        name = "surface-heat-pipe-superior", -- Уникальное имя трубы (для следующего уровня: surface-heat-pipe-superior)
+        icon = "__heat-pipe-surface-heating__/graphics/icons/heat-pipe-superior.png", -- Иконка, можно перекрасить
+        icon_size = 64,
+        subgroup = "energy",
+        order = "a[surface-heat-pipe]-05[superior]", -- Для сортировки в инвентаре. Следующий уровень: "a[surface-heat-pipe]-06[elite]"
+        place_result = "surface-heat-pipe-superior", -- Должно совпадать с entity.name
+        stack_size = 50
+    }
+})
