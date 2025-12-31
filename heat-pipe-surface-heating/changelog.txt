@@ -1,2 +1,26 @@
-30.12.2025
-1.0 Создание мода. Базовая настройка и проверка работоспособности на Ванила игре.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2025-09-30
+---------------------------------------------------------------------------------------------------
+
+EN:
+- Initial release.
+- Added 10 tiers of Surface Heat Pipes designed for cold planets.
+- Each tier provides an increased surface heating radius.
+- Surface heating works independently of pipe quality.
+- Recipes use advanced materials from Space Age planets.
+- Crafting is restricted to cryogenic-compatible crafting categories.
+- Technologies are unlocked progressively in a tiered chain.
+- Requires Space Age and Quality mods.
+
+RU:
+- Первый релиз мода.
+- Добавлено 10 уровней тепловых труб для обогрева поверхности холодных планет.
+- Каждый уровень увеличивает радиус нагрева территории.
+- Нагрев поверхности не зависит от качества трубы.
+- Рецепты используют продвинутые материалы с планет DLC Space Age.
+- Крафт доступен только в криогенных производственных категориях.
+- Технологии открываются последовательно, цепочкой.
+- Требуются моды Space Age и Quality.
+
+---------------------------------------------------------------------------------------------------
