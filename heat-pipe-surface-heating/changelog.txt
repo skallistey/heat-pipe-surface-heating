@@ -1,4 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2026-10-26
+---------------------------------------------------------------------------------------------------
+
+EN:
+- Updated compatibility for Factorio 2.1.7 and newer.
+- Replaced removed recipe category fields with the 2.1 categories list.
+- Removed the incorrectly configured per-entity freezing energy requirement.
+- Fixed wide item icons by placing them on square transparent canvases.
+- Kept the selected heat-pipe radius visible until selection changes; rendering is player-specific.
+
+RU:
+- Обновлена совместимость с Factorio 2.1.7 и новее.
+- Заменены удалённые поля категорий рецептов на список categories из версии 2.1.
+- Убрана ошибочно заданная энергия, требуемая самой сущности для защиты от замерзания.
+- Исправлен формат широких иконок: они помещены на квадратный прозрачный холст без обрезки.
+- Радиус выбранной тепловой трубы остаётся видимым до смены выделения; круг отображается только выбравшему игроку.
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2025-09-30
 ---------------------------------------------------------------------------------------------------
@@ -11,7 +31,7 @@ EN:
 - Recipes use advanced materials from Space Age planets.
 - Crafting is restricted to cryogenic-compatible crafting categories.
 - Technologies are unlocked progressively in a tiered chain.
-- Requires Space Age and Quality mods.
+- Requires Space Age; Quality is optional.
 
 RU:
 - Первый релиз мода.
@@ -21,6 +41,6 @@ RU:
 - Рецепты используют продвинутые материалы с планет DLC Space Age.
 - Крафт доступен только в криогенных производственных категориях.
 - Технологии открываются последовательно, цепочкой.
-- Требуются моды Space Age и Quality.
+- Требуется Space Age; Quality — необязательный мод.
 
 ---------------------------------------------------------------------------------------------------
