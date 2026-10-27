@@ -5,14 +5,14 @@
 -- ========================================================
 
 -- Проверяем, есть ли категория криогенного завода
-local recipe_category = "chemistry-or-cryogenics"
+local recipe_categories = {"chemistry", "cryogenics"}
 
 data:extend({
     {
         type = "recipe",
         name = "surface-heat-pipe-ultra",
         enabled = false,
-        category = recipe_category,
+        categories = recipe_categories,
         energy_required = 45,
 
         ingredients = {
