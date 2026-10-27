@@ -1,11 +1,10 @@
 ------------------------------------------------------------
--- Surface Heat Pipe Radius Visualization
--- Factorio 2.0+ SAFE & FINAL
+-- Surface Heat Pipe Radius Visualization (Factorio 2.1)
 ------------------------------------------------------------
 
 local ALPHA = 0.25
 local LINE_WIDTH = 1.5
-local CIRCLE_TTL = 30
+local STORAGE_KEY = "surface_heat_pipe_circle_ids"
 
 -- Цвета для уровней труб
 local PIPE_COLORS = {
@@ -21,36 +20,49 @@ local PIPE_COLORS = {
     ["ultimate"]   = { r=1,   g=1,   b=0.6, a=ALPHA },
 }
 
--- Получаем радиус трубы
+local function clear_player_circle(player_index)
+    local circle_ids = storage[STORAGE_KEY]
+    if not circle_ids then return end
+
+    local id = circle_ids[player_index]
+    if id then
+        local circle = rendering.get_object_by_id(id)
+        if circle then
+            circle.destroy()
+        end
+        circle_ids[player_index] = nil
+    end
+end
+
 local function get_radius(entity)
-    if entity and entity.valid and entity.prototype.heating_radius then
-        return entity.prototype.heating_radius
+    local radius = entity.prototype.heating_radius
+    if radius then
+        return radius
     end
     return 10
 end
 
--- Получаем цвет трубы
 local function get_color(entity)
-    if entity and entity.valid then
-        for level,_ in pairs(PIPE_COLORS) do
-            if string.find(entity.name, level) then
-                return PIPE_COLORS[level]
-            end
+    for level, color in pairs(PIPE_COLORS) do
+        if string.find(entity.name, level, 1, true) then
+            return color
         end
     end
     return { r=1, g=1, b=1, a=ALPHA }
 end
 
--- Основная функция при наведении
 local function on_selected_entity_changed(event)
+    -- Удаляем прежний круг, в том числе если игрок перестал выбирать трубу.
+    clear_player_circle(event.player_index)
+
     local player = game.get_player(event.player_index)
-    if not player then return end
+    if not (player and player.valid) then return end
 
     local entity = player.selected
     if not (entity and entity.valid) then return end
-    if not string.find(entity.name, "surface-heat-pipe") then return end
+    if not string.find(entity.name, "surface-heat-pipe", 1, true) then return end
 
-    rendering.draw_circle{
+    local circle = rendering.draw_circle{
         target = entity,
         surface = entity.surface,
         radius = get_radius(entity),
@@ -58,8 +70,19 @@ local function on_selected_entity_changed(event)
         width = LINE_WIDTH,
         filled = false,
         draw_on_ground = true,
-        time_to_live = CIRCLE_TTL
+        players = { event.player_index }
+        -- Без time_to_live: круг живёт до смены выделения и явно удаляется выше.
     }
+
+    storage[STORAGE_KEY] = storage[STORAGE_KEY] or {}
+    storage[STORAGE_KEY][event.player_index] = circle.id
 end
 
+script.on_init(function()
+    storage[STORAGE_KEY] = {}
+end)
+
 script.on_event(defines.events.on_selected_entity_changed, on_selected_entity_changed)
+script.on_event(defines.events.on_player_left_game, function(event)
+    clear_player_circle(event.player_index)
+end)
